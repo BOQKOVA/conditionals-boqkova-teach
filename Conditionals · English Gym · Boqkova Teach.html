@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conditionals · English Gym · Boqkova Teach</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmU5OGMwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjM2RkMGViIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iNCIgeT0iNCIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiByeD0iMTUiIGZpbGw9InVybCgjZykiIHN0cm9rZT0iIzBkMGQwZCIgc3Ryb2tlLXdpZHRoPSI1Ii8+PHRleHQgeD0iMzIiIHk9IjQ2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQnJpY29sYWdlIEdyb3Rlc3F1ZSwgQXJpYWwgQmxhY2ssIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iODAwIiBmb250LXNpemU9IjM4IiBmaWxsPSIjMGQwZDBkIj5CPC90ZXh0Pjwvc3ZnPg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Golos+Text:wght@400..900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#fffaf7; --surface:#ffffff; --ink:#0d0d0d; --muted:#4d4a4b;
+  --pink:#fe98c0; --green:#80eb3d; --blue:#3dd0eb; --red:#eb583d; --yellow:#ffd23f; --lilac:#b9a1ff;
+  --border:3px solid var(--ink); --radius:18px;
+  --shadow:6px 6px 0 var(--ink); --shadow-sm:4px 4px 0 var(--ink); --shadow-lg:9px 9px 0 var(--ink);
+  --display:"Bricolage Grotesque","Arial Black",system-ui,sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --c:var(--pink);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.8px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.05;margin:0;letter-spacing:-.02em}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+.py{font-family:var(--body);font-weight:600}
+.container{max-width:1120px;margin:0 auto;padding:0 18px}
+
+/* header */
+.header{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:var(--border)}
+.header__inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px}
+.brand{font-family:var(--display);font-weight:800;font-size:19px;text-decoration:none;background:var(--pink);border:var(--border);border-radius:10px;box-shadow:var(--shadow-sm);padding:2px 12px;white-space:nowrap}
+.nav{display:flex;gap:8px}
+.nav__link{text-decoration:none;font-weight:700;font-size:15px;padding:5px 14px;border:var(--border);border-radius:999px;background:var(--surface);box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.nav__link:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.nav__link.on{background:var(--ink);color:#fff}
+
+/* hero */
+.hero-wrap{padding:34px 0 30px}
+.hero{background:var(--surface);border:var(--border);border-radius:27px;box-shadow:var(--shadow-lg);padding:30px;display:grid;grid-template-columns:260px 1fr;gap:34px;align-items:center}
+.hero__media{position:relative;justify-self:center}
+.hero__avatar{width:230px;height:260px;background:var(--surface);border:var(--border);border-radius:28px;box-shadow:var(--shadow-lg);display:grid;place-items:center;transform:rotate(-3deg);background:linear-gradient(135deg,var(--pink),var(--blue))}
+.hero__avatar svg{width:52%;height:auto}
+.hero__sticker,.hero__sticker2{position:absolute;font-family:var(--display);font-weight:800;border:var(--border);border-radius:999px;box-shadow:var(--shadow-sm);padding:3px 14px;white-space:nowrap}
+.hero__sticker{background:var(--green);right:-18px;bottom:18px;transform:rotate(-6deg)}
+.hero__sticker2{background:var(--yellow);left:-16px;top:16px;transform:rotate(-10deg)}
+.hero__chip{display:inline-block;font-family:var(--display);font-weight:800;background:var(--pink);border:var(--border);border-radius:10px;box-shadow:var(--shadow-sm);padding:2px 12px}
+.hero__title{font-size:clamp(56px,10vw,120px);letter-spacing:-.06em;line-height:.9;margin:16px 0 10px}
+.hero__lead{font-size:19px;font-weight:500;max-width:560px;margin:0}
+.hero__stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{display:inline-block;font-weight:800;font-size:14px;border:var(--border);border-radius:999px;background:var(--surface);box-shadow:3px 3px 0 var(--ink);padding:3px 12px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:18px;padding:10px 20px;border:var(--border);border-radius:999px;background:var(--pink);box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn--ghost{background:var(--surface)}
+.btn--sm{font-size:15px;padding:6px 14px;box-shadow:3px 3px 0 var(--ink)}
+
+/* marquee */
+.marquee{background:var(--ink);color:var(--pink);font-family:var(--display);font-weight:800;font-size:25px;overflow:hidden;white-space:nowrap;display:flex;padding:9px 0}
+.marquee__track{display:flex;flex:none;animation:mq 30s linear infinite}
+.marquee__track span{margin:0 14px}
+.marquee__star{color:var(--green)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+/* sections & cards */
+.section{padding:46px 0}
+.heading{font-size:clamp(34px,5vw,52px);letter-spacing:-.04em}
+.lead{font-size:18px;color:var(--muted);max-width:640px;margin:10px 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.mode{display:flex;flex-direction:column;text-decoration:none;background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:transform .12s,box-shadow .12s}
+.mode:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
+.mode__banner{background:var(--c);border-bottom:var(--border);height:96px;display:flex;align-items:center;justify-content:space-between;padding:0 18px}
+.mode__emoji{font-size:48px;line-height:1}
+.mode__num{font-family:var(--display);font-weight:800;font-size:44px;color:var(--surface);-webkit-text-stroke:2.5px var(--ink)}
+.mode__body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.mode__title{font-size:23px}
+.mode__sum{color:var(--muted);font-size:15px;margin:6px 0 12px;flex:1}
+.mode__go{font-weight:800;align-self:flex-start;border-bottom:3px solid var(--c)}
+.mode__done{font-size:12px;font-weight:800;background:var(--green);border:2px solid var(--ink);border-radius:8px;padding:0 7px;margin-left:8px}
+
+/* gym page */
+.gym-head{margin-top:30px;border-radius:27px;padding:28px 24px;background:var(--c);border:var(--border);box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.gym-head__emoji{position:absolute;right:18px;bottom:-6px;font-size:130px;line-height:1;opacity:.95}
+.gym-head .chip{background:var(--surface)}
+.gym-head h1{font-size:clamp(42px,8vw,80px);letter-spacing:-.05em;margin:14px 0 8px;position:relative}
+.gym-head p{font-size:18px;font-weight:500;max-width:620px;margin:0;position:relative}
+.blk{margin-top:42px}
+.blk>h2{font-size:28px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.blk>h2 .n{width:38px;height:38px;border-radius:12px;background:var(--c);border:var(--border);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;font-size:18px;flex:none}
+.words{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.word{background:var(--surface);border:var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:10px 12px}
+.word .py{font-size:20px;display:block;line-height:1.2}
+.word .en{font-size:14px;color:var(--muted)}
+.lessons{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.lesson{background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.lesson h3{font-size:21px;margin-bottom:6px}
+.lesson>p{margin:0 0 10px;color:var(--muted);font-size:15.5px}
+.ex{display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:7px 0;border-top:2px dashed var(--ink);flex-wrap:wrap}
+.ex .py{font-size:18.5px}
+.ex .en{color:var(--muted);font-size:14.5px}
+.tip{background:var(--c);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px;margin-top:22px}
+.tip strong{font-family:var(--display);font-weight:800}
+.tones{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.tone{background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:14px;text-align:center}
+.tone svg{width:70px;height:46px;display:block;margin:0 auto 6px;background:var(--bg);border:2px solid var(--ink);border-radius:10px}
+.tone .big{font-size:38px;font-weight:700;display:block;line-height:1.1}
+.tone .t{font-family:var(--display);font-weight:800}
+.tone .en{font-size:14px;color:var(--muted)}
+.games{display:grid;gap:30px}
+.pager{display:flex;justify-content:space-between;gap:10px;margin:44px 0 60px;flex-wrap:wrap}
+.pager a{text-decoration:none;font-family:var(--display);font-weight:800;font-size:18px;padding:10px 18px;border-radius:999px;background:var(--surface);border:var(--border);box-shadow:var(--shadow-sm);transition:transform .12s,box-shadow .12s}
+.pager a:last-child{background:var(--c)}
+.pager a:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+
+/* games */
+.game{background:var(--ink);color:#fff;border:var(--border);border-radius:27px;box-shadow:9px 9px 0 var(--c);padding:22px;position:relative;overflow:hidden}
+.game h3{font-size:26px;color:var(--pink)}
+.gsub{color:#d6d0d3;margin:6px 0 14px;font-size:15px}
+.g-stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.g-stats div{background:var(--surface);color:var(--ink);border:2px solid var(--ink);padding:3px 12px;border-radius:999px;font-weight:800;font-size:14px}
+.g-center{text-align:center;padding:14px 0}
+.bigscore{font-family:var(--display);font-weight:800;font-size:60px;color:var(--green);line-height:1.1}
+.btn-light{border:3px solid var(--pink);background:var(--pink);color:var(--ink);font-family:var(--display);font-weight:800;font-size:18px;padding:9px 22px;border-radius:999px;box-shadow:4px 4px 0 #fff}
+.btn-light:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #fff}
+.q-card{background:var(--surface);color:var(--ink);border-radius:20px;box-shadow:6px 6px 0 var(--c);padding:22px 16px;text-align:center;margin:4px 0 18px}
+.q-card .q{font-size:21px;font-weight:600;line-height:1.35}
+.q-card .q .big{font-size:52px;font-weight:700;display:block;line-height:1.1}
+.q-card .q i{color:var(--muted);font-style:normal;font-size:16px;display:block;margin-top:4px}
+.q-fb{display:block;margin-top:10px;color:var(--muted);font-size:15px;min-height:22px}
+.q-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.q-opts button{background:var(--surface);color:var(--ink);border:3px solid var(--surface);border-radius:16px;padding:12px 10px;font-weight:700;font-size:18px;box-shadow:4px 4px 0 var(--c);transition:transform .08s}
+.q-opts button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--c)}
+.q-opts button.right{background:var(--green);border-color:var(--green)}
+.q-opts button.wrong{background:var(--red);border-color:var(--red)}
+.timer{height:14px;background:#2a2a2a;border:2px solid #fff;border-radius:99px;overflow:hidden;margin-bottom:16px}
+.timer i{display:block;height:100%;background:var(--c);width:100%;transition:width .1s linear}
+.m-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.m-col{display:flex;flex-direction:column;gap:10px}
+.m-col button{background:var(--surface);color:var(--ink);border:3px solid var(--surface);border-radius:14px;padding:10px 8px;font-weight:700;font-size:17px;box-shadow:3px 3px 0 var(--c);min-height:50px}
+.m-col button.sel{background:var(--yellow);border-color:var(--yellow)}
+.m-col button.done{background:var(--green);border-color:var(--green);opacity:.45;box-shadow:none}
+.m-col button.no{background:var(--red);border-color:var(--red);animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.b-en{font-size:18px;font-weight:700;margin-bottom:12px}
+.b-line{min-height:58px;border:3px dashed rgba(255,255,255,.5);border-radius:16px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.b-line.ok{border-color:var(--green);border-style:solid;background:rgba(128,235,61,.12)}
+.b-line.no{border-color:var(--red);animation:shake .35s}
+.b-pool{display:flex;flex-wrap:wrap;gap:10px;min-height:46px}
+.tok{font-weight:700;font-size:19px;padding:5px 14px;border-radius:999px;background:var(--surface);color:var(--ink);border:3px solid var(--surface);box-shadow:3px 3px 0 var(--c)}
+.b-line .tok{box-shadow:none;background:var(--yellow);border-color:var(--yellow)}
+.b-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:10px;flex-wrap:wrap}
+
+/* real-life course */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.seg{display:inline-flex;background:var(--surface);border:var(--border);border-radius:999px;padding:3px;box-shadow:3px 3px 0 var(--ink)}
+.seg button{border:none;background:none;padding:6px 14px;border-radius:999px;font-weight:800;font-size:14px}
+.seg button.on{background:var(--ink);color:#fff}
+.phr{display:grid;gap:12px}
+.ph{background:var(--surface);border:var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:11px 14px}
+.ph .py{font-size:19px;display:block;line-height:1.3}
+.ph .en{color:var(--muted);font-size:15px}
+.hide-en .en{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
+.hide-en .en.show{filter:none}
+.chat{background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;display:flex;flex-direction:column;gap:12px}
+.situ{align-self:center;background:var(--bg);border:var(--border);border-radius:12px;box-shadow:var(--shadow-sm);padding:6px 14px;font-weight:600;text-align:center;max-width:640px}
+.ln{display:flex;flex-direction:column;align-items:flex-start;max-width:85%}
+.ln.r{align-self:flex-end;align-items:flex-end}
+.who{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin:0 6px 3px}
+.bub{border:var(--border);border-radius:18px 18px 18px 6px;padding:9px 14px;background:var(--bg);box-shadow:3px 3px 0 var(--ink)}
+.ln.r .bub{background:var(--c);border-radius:18px 18px 6px 18px}
+.bub .py{font-size:19px;display:block;line-height:1.35}
+.bub .en{font-size:14px;color:var(--muted);display:block}
+.ln.r .bub .en{color:var(--ink);opacity:.75}
+.gap{display:inline-block;min-width:70px;border-bottom:3px dashed var(--ink);text-align:center;font-weight:800;padding:0 4px}
+.gap.done{background:var(--surface);border:2px solid var(--ink);border-radius:8px;padding:0 6px}
+.hint{color:var(--muted);font-size:14px;font-weight:700}
+.rp-opts{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:6px}
+.opt{font-weight:700;font-size:17px;padding:6px 14px;border-radius:12px;border:var(--border);background:var(--surface);box-shadow:3px 3px 0 var(--ink)}
+.opt.wrong{background:var(--red);text-decoration:line-through;animation:shake .35s}
+.rp-end{text-align:center;padding:8px 0 4px}
+.rp-end .big{font-family:var(--display);font-weight:800;font-size:40px}
+.s-btns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.s-btns button{border:3px solid var(--surface);background:var(--c);color:var(--ink);border-radius:16px;padding:14px 8px;font-family:var(--display);font-weight:800;font-size:18px;box-shadow:4px 4px 0 var(--surface)}
+.s-btns button.right{background:var(--green);border-color:var(--green)}
+.s-btns button.wrong{background:var(--red);border-color:var(--red)}
+
+.footer{background:var(--ink);color:var(--pink);font-family:var(--display);font-weight:800;font-size:20px;text-align:center;padding:24px 0;margin-top:30px}
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr;padding:24px 18px;gap:26px}
+  .hero__avatar{width:180px;height:200px}
+  .brand{font-size:16px}
+  .nav__link{font-size:14px;padding:4px 10px}
+  .gym-head__emoji{font-size:90px;opacity:.5}
+  .q-card .q .big{font-size:44px}
+}
+
+:root{--body:"DM Sans","Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;--display:"Bricolage Grotesque","Golos Text","Arial Black",system-ui,sans-serif}
+section[id]{scroll-margin-top:84px}
+.en-x{font-weight:600}
+.ru-t{color:var(--muted);font-size:14.5px}
+.types{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.tcard{background:var(--c);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;text-decoration:none;display:block;transition:transform .12s,box-shadow .12s}
+.tcard:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.tcard .num{font-family:var(--display);font-weight:800;font-size:46px;line-height:1;color:var(--surface);-webkit-text-stroke:2.5px var(--ink)}
+.tcard h3{font-size:21px;margin:6px 0 4px}
+.tcard p{margin:0;font-size:15px}
+.type-sec{margin-top:46px}
+.type-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.type-head .badge{font-family:var(--display);font-weight:800;font-size:30px;width:58px;height:58px;border-radius:16px;background:var(--c);border:var(--border);box-shadow:var(--shadow-sm);display:grid;place-items:center;flex:none}
+.type-head h2{font-size:clamp(28px,4.5vw,40px);letter-spacing:-.03em}
+.type-head .sub{color:var(--muted);font-weight:600;width:100%;margin-left:72px;margin-top:-10px}
+.formula{background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-weight:700;font-size:18px;margin-bottom:18px}
+.formula .p{background:var(--c);border:2.5px solid var(--ink);border-radius:10px;padding:2px 10px}
+.formula .p.w{background:var(--surface)}
+.formula small{display:block;width:100%;color:var(--muted);font-weight:500;font-size:15px}
+.two{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;align-items:start}
+.exl{background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:6px 16px}
+.exl .row{padding:10px 0;border-bottom:2px dashed var(--ink)}
+.exl .row:last-child{border-bottom:none}
+.exl .en-x{font-size:18px;display:block}
+.exl b{background:var(--c);padding:0 4px;border-radius:5px}
+.note{background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px}
+.note h3{font-size:19px;margin-bottom:6px}
+.note p{margin:0 0 8px;font-size:15.5px}
+.note p:last-child{margin:0}
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:720px}
+th,td{padding:12px 14px;text-align:left;border-bottom:2px solid var(--ink);vertical-align:top;font-size:15.5px}
+th{background:var(--ink);color:#fff;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+tr:last-child td{border-bottom:none}
+td .tag{display:inline-block;font-family:var(--display);font-weight:800;border:2px solid var(--ink);border-radius:8px;padding:0 8px}
+.mist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.mist .m{background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:14px 16px}
+.mist .bad{color:var(--red);font-weight:700;text-decoration:line-through;display:block}
+.mist .good{font-weight:700;display:block;margin:2px 0 6px}
+.mist .good::before{content:"✓ ";color:#2e9a12}
+.mist p{margin:0;font-size:14.5px;color:var(--muted)}
+.ipa{font-family:var(--body);font-weight:600;background:var(--bg);border:2px solid var(--ink);border-radius:8px;padding:0 6px;white-space:nowrap}
+/* typing exercise */
+.tp{background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:14px 16px;margin-bottom:14px}
+.tp .qn{display:inline-block;font-size:12px;font-weight:800;background:var(--c);border:2px solid var(--ink);border-radius:8px;padding:0 8px}
+.tp .s{font-size:18.5px;font-weight:600;margin:8px 0 10px}
+.tp .s .gap{display:inline-block;min-width:70px;border-bottom:3px solid var(--ink);text-align:center;font-weight:800}
+.tp .row{display:flex;gap:10px;flex-wrap:wrap}
+.tp input{font:inherit;font-size:18px;padding:7px 12px;border-radius:12px;border:var(--border);background:var(--bg);flex:1;min-width:170px;outline:none}
+.tp input:focus{background:#fff4c9}
+.tp input.right{background:var(--green)}
+.tp input.wrong{background:var(--red)}
+.tp .fb{margin-top:8px;font-size:15px;display:none}
+.tp .fb.show{display:block}
+.chk{border:var(--border);background:var(--ink);color:#fff;font-weight:800;padding:7px 16px;border-radius:12px;box-shadow:3px 3px 0 var(--c)}
+.score-pill{display:inline-block;font-weight:800;background:var(--green);border:var(--border);padding:4px 12px;border-radius:999px;box-shadow:3px 3px 0 var(--ink);margin-bottom:14px}
+.t-btns{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.t-btns button{border:3px solid var(--surface);border-radius:14px;padding:10px 4px;font-family:var(--display);font-weight:800;font-size:24px;color:var(--ink);box-shadow:3px 3px 0 var(--surface);line-height:1.1}
+.t-btns button small{display:block;font-family:var(--body);font-size:12px;font-weight:700}
+.t-btns button.right{outline:4px solid var(--green);outline-offset:2px}
+.t-btns button.dim{opacity:.35}
+.fm-s{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--surface);border-radius:20px;box-shadow:6px 6px 0 var(--c);padding:20px 14px;margin:4px 0 14px}
+.fm-s button{border:2.5px solid var(--ink);background:var(--bg);color:var(--ink);font-weight:700;font-size:19px;padding:3px 10px;border-radius:10px}
+.fm-s button:hover{background:#fff4c9}
+.fm-s button.right{background:var(--green)}
+.fm-s button.wrong{background:var(--red);text-decoration:line-through}
+.fm-fb{min-height:48px;color:#d6d0d3;font-size:15px;text-align:center}
+.fm-fb b{color:#fff}
+.m-col button{font-size:15.5px}
+/* trial / instagram */
+.trial{background:linear-gradient(135deg,var(--pink),var(--blue));border:var(--border);border-radius:27px;box-shadow:var(--shadow-lg);padding:30px 26px;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center}
+.trial h2{font-size:clamp(34px,5.5vw,56px);letter-spacing:-.04em}
+.trial p{font-size:18px;font-weight:500;margin:14px 0}
+.trial ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:8px}
+.trial li{background:var(--surface);border:2.5px solid var(--ink);border-radius:12px;padding:6px 12px;font-weight:700;box-shadow:3px 3px 0 var(--ink)}
+.trial li::before{content:"✓ ";color:#2e9a12}
+.ig{background:var(--surface);border:var(--border);border-radius:24px;box-shadow:var(--shadow-lg);padding:22px;text-align:center;transform:rotate(2deg)}
+.ig__ava{width:96px;height:96px;margin:0 auto 10px;border-radius:50%;border:var(--border);background:linear-gradient(135deg,var(--pink),var(--blue));display:grid;place-items:center;box-shadow:var(--shadow-sm)}
+.ig__ava svg{width:42%}
+.ig__handle{font-family:var(--display);font-weight:800;font-size:28px}
+.ig__name{font-weight:700}
+.ig__bio{color:var(--muted);font-size:15px;margin:8px 0 16px}
+.ig .btn{width:100%;justify-content:center}
+.ig__small{font-size:13px;color:var(--muted);margin-top:10px}
+@media (max-width:820px){.two,.trial{grid-template-columns:1fr}.ig{transform:none}}
+@media (max-width:560px){.t-btns{grid-template-columns:repeat(2,1fr)}.type-head .sub{margin-left:0;margin-top:0}.nav__link{font-size:12.5px;padding:3px 8px}.brand{font-size:15px}.header__inner{gap:6px}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header__inner">
+    <a class="brand" href="#top">English Gym ✦</a>
+    <nav class="nav">
+      <a class="nav__link" href="#lessons">Уроки</a>
+      <a class="nav__link" href="#exercises">Упражнения</a>
+      <a class="nav__link" href="#games">Игры</a>
+      <a class="nav__link" href="#trial" style="background:var(--pink)">Пробный урок</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero-wrap"><div class="container"><div class="hero">
+    <div class="hero__media">
+      <div class="hero__avatar" role="img" aria-label="B"><!--LOGO--></div>
+      <span class="hero__sticker2">if…</span>
+      <span class="hero__sticker">A2 ✦ B1</span>
+    </div>
+    <div>
+      <span class="hero__chip">Boqkova Teach</span>
+      <h1 class="hero__title">if gym</h1>
+      <p class="hero__lead">Условные предложения в английском: <b>если…, то…</b> Четыре типа, понятные объяснения на русском, упражнения и игры, пока не запомнится.</p>
+      <div class="hero__stats">
+        <span class="chip" style="background:var(--blue)">0 · 1 · 2 · 3</span>
+        <span class="chip" style="background:var(--yellow)">+ mixed</span>
+        <span class="chip">2 упражнения</span>
+        <span class="chip" style="background:var(--green)">4 игры</span>
+      </div>
+      <div class="actions" style="margin-top:26px">
+        <a class="btn" href="#lessons">Начать урок →</a>
+        <a class="btn btn--ghost" href="#games">Сразу к играм</a>
+      </div>
+    </div>
+  </div></div></section>
+
+  <div class="marquee"><div class="marquee__track" id="mq1"></div><div class="marquee__track" aria-hidden="true" id="mq2"></div></div>
+
+  <!-- ============ LESSONS ============ -->
+  <section class="section" id="lessons"><div class="container">
+    <h2 class="heading">Что такое conditionals?</h2>
+    <p class="lead">Это предложения с <b>if</b> (если). У них две части: <b>условие</b> (if-часть) и <b>результат</b> (главная часть). Какие времена ставить — зависит от того, насколько ситуация реальна.</p>
+    <div class="formula" style="--c:var(--yellow)"><span class="p">If it rains,</span><span>+</span><span class="p w">we will stay at home.</span>
+      <small>условие (if-часть) + результат (главная часть) — «Если пойдёт дождь, мы останемся дома.»</small></div>
+    <div class="note" style="margin-bottom:24px"><h3>Запятая</h3><p>Если предложение начинается с <b>if</b> — ставим запятую: <span class="en-x">If you call me, I’ll come.</span></p><p>Если if-часть стоит второй — запятая не нужна: <span class="en-x">I’ll come if you call me.</span></p></div>
+    <div class="types" id="typeCards"></div>
+    <div id="typeSecs"></div>
+
+    <section class="type-sec" id="cheat">
+      <div class="type-head"><span class="badge" style="--c:var(--ink);color:#fff">✦</span><h2>Шпаргалка</h2></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>Тип</th><th>Когда</th><th>If-часть</th><th>Главная часть</th><th>Пример</th></tr>
+        <tr><td><span class="tag" style="background:var(--blue)">0</span></td><td>факты, всегда правда</td><td>Present Simple</td><td>Present Simple</td><td class="en-x">If you heat ice, it melts.</td></tr>
+        <tr><td><span class="tag" style="background:var(--green)">1</span></td><td>реальное будущее</td><td>Present Simple</td><td>will + глагол</td><td class="en-x">If it rains, I’ll stay home.</td></tr>
+        <tr><td><span class="tag" style="background:var(--yellow)">2</span></td><td>нереально сейчас, мечты</td><td>Past Simple</td><td>would + глагол</td><td class="en-x">If I had a car, I’d drive.</td></tr>
+        <tr><td><span class="tag" style="background:var(--pink)">3</span></td><td>нереальное прошлое, сожаления</td><td>Past Perfect</td><td>would have + V3</td><td class="en-x">If I had known, I’d have helped.</td></tr>
+        <tr><td><span class="tag" style="background:var(--lilac)">mix</span></td><td>прошлое → результат сейчас</td><td>Past Perfect</td><td>would + глагол</td><td class="en-x">If I had slept, I wouldn’t be tired now.</td></tr>
+      </table></div>
+    </section>
+
+    <section class="type-sec" id="mistakes">
+      <div class="type-head"><span class="badge" style="--c:var(--red)">!</span><h2>Типичные ошибки</h2><span class="sub">То, на чём чаще всего спотыкаются русскоязычные</span></div>
+      <div class="mist">
+        <div class="m"><span class="bad">If it will rain, …</span><span class="good">If it rains, …</span><p>По-русски «если <i>будет</i> дождь» — будущее. В английском после <b>if</b> ставим настоящее время, а will — только в главной части.</p></div>
+        <div class="m"><span class="bad">If I would know, …</span><span class="good">If I knew, …</span><p>В русском «бы» стоит в обеих частях. В английском <b>would</b> — только в главной части, никогда после if.</p></div>
+        <div class="m"><span class="bad">«если бы» = всегда 2-й тип</span><span class="good">смотри на время!</span><p>«Если бы я знал» может быть про сейчас (2-й тип: <span class="en-x">If I knew</span>) или про прошлое (3-й тип: <span class="en-x">If I had known</span>).</p></div>
+        <div class="m"><span class="bad">I’d = всегда I would</span><span class="good">I’d = I would или I had</span><p>Смотри, что дальше: <span class="en-x">I’d go</span> = I would go, <span class="en-x">I’d gone</span> = I had gone.</p></div>
+      </div>
+    </section>
+  </div></section>
+
+  <!-- ============ EXERCISES ============ -->
+  <section class="section" id="exercises" style="padding-top:10px"><div class="container">
+    <h2 class="heading">Упражнения</h2>
+    <p class="lead">Сначала выбери правильный вариант, потом напиши форму сам(а).</p>
+    <div class="games">
+      <div class="game" id="ex1" style="--c:var(--blue)"></div>
+      <div id="ex2wrap"><div class="type-head" style="margin-top:6px"><span class="badge" style="--c:var(--green)">✍️</span><h2 style="font-size:28px">Раскрой скобки</h2><span class="sub">Напиши глагол в правильной форме и нажми «Проверить» (или Enter).</span></div><span class="score-pill" id="ex2score"></span><div id="ex2"></div><button class="btn btn--ghost btn--sm" id="ex2reset">↺ Начать заново</button></div>
+    </div>
+  </div></section>
+
+  <!-- ============ GAMES ============ -->
+  <section class="section" id="games" style="padding-top:10px"><div class="container">
+    <h2 class="heading">Игры</h2>
+    <p class="lead">Тренируйся, пока не станет легко. Рекорды сохраняются в этом браузере.</p>
+    <div class="games">
+      <div class="game" id="g1" style="--c:var(--yellow)"></div>
+      <div class="game" id="g2" style="--c:var(--pink)"></div>
+      <div class="game" id="g3" style="--c:var(--green)"></div>
+      <div class="game" id="g4" style="--c:var(--lilac)"></div>
+    </div>
+  </div></section>
+
+  <!-- ============ TRIAL LESSON ============ -->
+  <section class="section" id="trial" style="padding-top:10px"><div class="container">
+    <div class="trial">
+      <div>
+        <span class="hero__chip" style="background:var(--surface)">Boqkova Teach</span>
+        <h2 style="margin-top:14px">Первый урок — бесплатно 🎁</h2>
+        <p>Хочешь не просто знать правила, а свободно говорить по-английски? Приходи на бесплатный пробный урок! Уроки проходят онлайн, один на один, в удобное для тебя время.</p>
+        <ul>
+          <li>Определим твой уровень</li>
+          <li>Обсудим цели и составим план</li>
+          <li>Попробуешь формат урока — с играми, как на этом сайте</li>
+          <li>Без обязательств</li>
+        </ul>
+        <a class="btn" href="https://www.instagram.com/boqkova/" target="_blank" rel="noopener" style="background:var(--ink);color:#fff">Записаться в Instagram →</a>
+      </div>
+      <div class="ig">
+        <div class="ig__ava"><!--LOGO--></div>
+        <div class="ig__handle">@boqkova</div>
+        <div class="ig__name">Boqkova Teach</div>
+        <div class="ig__bio">Английский и русский онлайн ✦ уроки с играми ✦ пиши в Direct «Хочу пробный урок» 💌</div>
+        <a class="btn" href="https://www.instagram.com/boqkova/" target="_blank" rel="noopener">Открыть Instagram</a>
+        <div class="ig__small">instagram.com/boqkova</div>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer class="footer">
+  <div class="container">Boqkova Teach ✦ English Gym · <span class="en-x">If you practise, you’ll improve!</span></div>
+</footer>
+
+<script>
+/* ======================= LESSON DATA ======================= */
+const TYPES = [
+  {n:'0', id:'zero', color:'var(--blue)', title:'Zero conditional', ru:'Нулевой тип: факты', short:'Всегда правда: законы природы, правила, привычки.',
+   form:['If + Present Simple','Present Simple'], formNote:'Здесь <b>if</b> можно заменить на <b>when</b> (когда) — смысл не изменится.',
+   ex:[['If you <b>heat</b> ice, it <b>melts</b>.','Если нагреть лёд, он тает.'],['If you <b>mix</b> red and blue, you <b>get</b> purple.','Если смешать красный и синий, получится фиолетовый.'],['If I <b>drink</b> coffee at night, I <b>can’t</b> sleep.','Если я пью кофе вечером, я не могу уснуть.'],['Plants <b>die</b> if they <b>don’t get</b> water.','Растения погибают, если не получают воды.']],
+   note:['Когда использовать','Научные факты, инструкции и то, что происходит <b>каждый раз</b>. Никакого will — результат гарантирован всегда, а не «когда-то потом».']},
+  {n:'1', id:'first', color:'var(--green)', title:'First conditional', ru:'Первый тип: реальное будущее', short:'Реальная ситуация в будущем: может случиться.',
+   form:['If + Present Simple','will + глагол'], formNote:'Самое важное правило: <b>после if — НЕ will</b>, даже если речь о будущем!',
+   ex:[['If it <b>rains</b> tomorrow, we <b>will stay</b> at home.','Если завтра пойдёт дождь, мы останемся дома.'],['If you <b>study</b>, you<b>’ll pass</b> the exam.','Если будешь заниматься, сдашь экзамен.'],['I<b>’ll call</b> you if I<b>’m</b> late.','Я позвоню, если опоздаю.'],['<b>Unless</b> you <b>hurry</b>, you<b>’ll miss</b> the bus.','Если не поторопишься, опоздаешь на автобус.']],
+   note:['unless = if not','<b>Unless</b> значит «если не»: <span class="en-x">Unless you hurry…</span> = <span class="en-x">If you don’t hurry…</span> После unless глагол стоит в утвердительной форме.']},
+  {n:'2', id:'second', color:'var(--yellow)', title:'Second conditional', ru:'Второй тип: мечты и «если бы»', short:'Нереально сейчас или маловероятно в будущем.',
+   form:['If + Past Simple','would + глагол'], formNote:'Форма прошедшая, но говорим про <b>сейчас</b>! Past Simple здесь показывает «нереальность», а не прошлое.',
+   ex:[['If I <b>had</b> a million dollars, I <b>would travel</b> the world.','Если бы у меня был миллион долларов, я бы путешествовал(а) по миру.'],['If I <b>were</b> you, I<b>’d talk</b> to her.','На твоём месте я бы с ней поговорил(а).'],['If he <b>lived</b> closer, we<b>’d see</b> him more often.','Если бы он жил ближе, мы бы виделись чаще.'],['What <b>would</b> you <b>do</b> if you <b>won</b> the lottery?','Что бы ты сделал(а), если бы выиграл(а) в лотерею?']],
+   note:['If I were you','Со всеми лицами можно использовать <b>were</b>: <span class="en-x">If I were, if he were, if she were</span>. Фраза <span class="en-x">If I were you, I’d…</span> — классический способ дать совет. Произношение: would <span class="ipa">/wʊd/</span> — буква <b>l</b> не читается!']},
+  {n:'3', id:'third', color:'var(--pink)', title:'Third conditional', ru:'Третий тип: сожаления о прошлом', short:'Прошлое, которое уже не изменить.',
+   form:['If + Past Perfect (had + V3)','would have + V3'], formNote:'Говорим о том, что <b>не случилось</b> в прошлом, и о результате, которого тоже не было.',
+   ex:[['If I <b>had studied</b>, I <b>would have passed</b> the exam.','Если бы я занимался(ась), я бы сдал(а) экзамен. (но не занимался и не сдал)'],['If we <b>had left</b> earlier, we <b>wouldn’t have missed</b> the train.','Если бы мы вышли раньше, мы бы не опоздали на поезд.'],['She <b>would have come</b> if you <b>had invited</b> her.','Она бы пришла, если бы ты её пригласил(а).'],['If I <b>had known</b>, I <b>would have helped</b>.','Если бы я знал(а), я бы помог(ла).']],
+   note:['V3 = третья форма глагола','go → went → <b>gone</b>, see → saw → <b>seen</b>, take → took → <b>taken</b>. У правильных глаголов V3 = V2: study → studied → <b>studied</b>.']},
+  {n:'mix', id:'mixed', color:'var(--lilac)', title:'Mixed conditional', ru:'Бонус: смешанный тип', short:'Прошлое повлияло на настоящее.',
+   form:['If + Past Perfect','would + глагол (сейчас)'], formNote:'Условие — в прошлом (3-й тип), результат — сейчас (2-й тип).',
+   ex:[['If I <b>had slept</b> well, I <b>wouldn’t be</b> tired now.','Если бы я хорошо выспался(ась), я бы сейчас не был(а) уставшим(ей).'],['If she <b>had taken</b> the job, she <b>would live</b> in London now.','Если бы она согласилась на ту работу, она бы сейчас жила в Лондоне.']],
+   note:['Подсказка','Ищи слова-маркеры: <b>now, today, still</b> в главной части — значит результат про настоящее.']}
+];
+
+/* ======================= EXERCISE DATA ======================= */
+const MC = [
+  ['If you heat water to 100°C, it ___.','boils',['will boil','would boil'],'Тип 0: научный факт → Present Simple в обеих частях.'],
+  ['If it ___ tomorrow, we’ll stay at home.','rains',['will rain','rained'],'Тип 1: после if — Present Simple, даже про будущее.'],
+  ['If I ___ you, I would talk to her.','were',['am','will be'],'If I were you — классический совет (тип 2).'],
+  ['If she had studied harder, she ___ the exam.','would have passed',['would pass','will pass'],'Тип 3: прошлое, которое уже не изменить.'],
+  ['If I had a car, I ___ you to the airport.','would drive',['will drive','would have driven'],'Тип 2: машины нет сейчас.'],
+  ['We’ll miss the train if we ___ now.','don’t leave',['won’t leave','didn’t leave'],'Тип 1: после if — Present Simple.'],
+  ['If you ___ ice, it melts.','heat',['will heat','heated'],'Тип 0: факт → Present Simple.'],
+  ['If I ___ about the party, I would have come.','had known',['knew','have known'],'Тип 3: if + Past Perfect.'],
+  ['What would you do if you ___ a million dollars?','won',['will win','win'],'Тип 2: if + Past Simple.'],
+  ['I ___ you if I see him.','will tell',['would tell','told'],'Тип 1: реальное будущее → will.'],
+  ['If they ___ the map, they wouldn’t have got lost.','had taken',['took','would take'],'Тип 3: if + had + V3.'],
+  ['You’ll be late ___ you hurry.','unless',['if','when'],'unless = if not: «если не поторопишься».'],
+  ['If I had slept more, I ___ so tired now.','wouldn’t be',['won’t be','wouldn’t have been'],'Смешанный тип: прошлое → результат сейчас (now).']
+];
+const TYPE_IN = [
+  ['If it ___ tomorrow, we’ll take an umbrella.','rain',['rains'],'Тип 1.'],
+  ['If I ___ rich, I would buy a house by the sea.','be',['were','was'],'Тип 2. Лучше were, но was тоже встречается в разговорной речи.'],
+  ['If you ___ plants, they die.','not / water',['don’t water','do not water'],'Тип 0.'],
+  ['If she ___ me, I will answer.','call',['calls'],'Тип 1: she → calls.'],
+  ['If we had left earlier, we ___ the train.','catch',['would have caught','’d have caught'],'Тип 3: catch → caught → caught.'],
+  ['I ___ you if I had more time.','help',['would help','’d help'],'Тип 2.'],
+  ['If he ___ so tired, he would have come to the party.','not / be',['hadn’t been','had not been'],'Тип 3.'],
+  ['If you mix red and white, you ___ pink.','get',['get'],'Тип 0.'],
+  ['They ___ angry if we don’t come.','be',['will be','’ll be'],'Тип 1.'],
+  ['If I ___ her number, I would call her.','know',['knew'],'Тип 2: know → knew.']
+];
+const TYPED = [
+  ['If you heat ice, it melts.',0],['If I drink coffee at night, I can’t sleep.',0],['Plants die if they don’t get water.',0],['If you press this button, the light turns on.',0],['If babies are hungry, they cry.',0],['If you mix blue and yellow, you get green.',0],
+  ['If it rains, we’ll stay at home.',1],['If you study, you’ll pass the exam.',1],['I’ll call you if I’m late.',1],['If she comes, I’ll be happy.',1],['We won’t go unless it stops raining.',1],['If you eat all that cake, you’ll feel sick.',1],
+  ['If I had wings, I would fly.',2],['If I were you, I’d say sorry.',2],['If he lived closer, we’d see him more.',2],['What would you do if you met a famous person?',2],['If I knew the answer, I’d tell you.',2],['She would buy a dog if she had a bigger flat.',2],
+  ['If I had known, I would have helped.',3],['If we had left earlier, we wouldn’t have missed the bus.',3],['She would have come if you had invited her.',3],['If they hadn’t been late, they would have seen the start.',3],['If I had set an alarm, I wouldn’t have overslept.',3],['If you had told me, I would have understood.',3]
+];
+const TLAB = [['0','факты','var(--blue)'],['1','реальное','var(--green)'],['2','мечты','var(--yellow)'],['3','сожаления','var(--pink)']];
+const HALVES = [
+  ['If you heat ice,','it melts.'],['If it rains tomorrow,','we’ll take umbrellas.'],['If I were a bird,','I would fly south for the winter.'],['If I had known about the test,','I would have studied.'],['If you don’t hurry,','you’ll miss the bus.'],
+  ['If I had more free time,','I’d learn to play the guitar.'],['If you mix red and yellow,','you get orange.'],['If she had taken an umbrella,','she wouldn’t have got wet.'],['If we lived by the sea,','we would swim every day.'],['If you water plants,','they grow.']
+];
+const BUILD = [
+  ['If it rains, we will stay at home.','Если пойдёт дождь, мы останемся дома.'],
+  ['If I were you, I would call her.','На твоём месте я бы ей позвонил(а).'],
+  ['If you heat ice, it melts.','Если нагреть лёд, он тает.'],
+  ['If I had known, I would have helped.','Если бы я знал(а), я бы помог(ла).'],
+  ['I will tell him if I see him.','Я скажу ему, если увижу его.'],
+  ['What would you do if you won the lottery?','Что бы ты сделал(а), если бы выиграл(а) в лотерею?']
+];
+const MISTAKES = [
+  ['If I will see her, I will tell her.',2,'If I see her, I will tell her.','Тип 1: после if не ставим will.'],
+  ['If you heat ice, it melt.',5,'If you heat ice, it melts.','Тип 0: it → melts (окончание -s).'],
+  ['If I had a car, I will drive you.',6,'If I had a car, I would drive you.','Тип 2: had → would, а не will.'],
+  ['If she had studied, she would passed.',6,'If she had studied, she would have passed.','Тип 3: would have + V3 — не хватает have.'],
+  ['If we have more money, we would buy a house.',2,'If we had more money, we would buy a house.','Тип 2: if + Past Simple (had).'],
+  ['If they had left earlier, they would have catch the train.',8,'…they would have caught the train.','После have — третья форма: caught.'],
+  ['If it rains, we stays at home.',4,'If it rains, we will stay at home.','Тип 1: will + глагол (и we stay, а не stays).'],
+  ['I would help you if I know how.',6,'I would help you if I knew how.','Тип 2: if + Past Simple (knew).'],
+  ['If you will need anything, call me.',2,'If you need anything, call me.','После if не ставим will.'],
+  ['If I would have known, I would have come.',2,'If I had known, I would have come.','would никогда не ставим после if. Тип 3: if + had known.']
+];
+
+/* ======================= UTIL ======================= */
+const $=(s,el=document)=>el.querySelector(s);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+const norm=s=>s.toLowerCase().replace(/[’‘`]/g,"'").replace(/\s+/g,' ').trim();
+const store={get(){try{return JSON.parse(localStorage.getItem('eg-cond')||'{}')}catch(e){return {}}},set(k,v){try{const d=this.get();d[k]=v;localStorage.setItem('eg-cond',JSON.stringify(d))}catch(e){}},best(k,v){const b=this.get()[k];if(b==null||v>b)this.set(k,v);return Math.max(b||0,v);}};
+const cheer=(s,n)=>s===n?'Идеально! Perfect! 🎉':s>=n*.7?'Отлично! Great job! 👏':'Тренируйся ещё! Keep going! 💪';
+function endScreen(el,title,big,msg,best,again){
+  el.innerHTML=`<h3>${title}</h3><div class="g-center"><div class="bigscore">${big}</div><div>${msg}</div>${best?`<div style="color:#d6d0d3;margin-top:4px">${best}</div>`:''}<button class="btn-light" style="margin-top:14px">Играть ещё</button></div>`;
+  el.querySelector('button').onclick=again;
+}
+
+/* ======================= RENDER LESSONS ======================= */
+const LOGO=`<svg viewBox="0 0 440 527" aria-hidden="true"><path fill="#0d0d0d" fill-rule="evenodd" d="M0,0 L0,527 L257,527 L258,526 L284,525 L285,524 L292,524 L293,523 L311,521 L346,512 L364,505 L378,498 L396,486 L411,472 L423,456 L431,440 L437,421 L437,416 L439,409 L439,398 L440,397 L440,383 L439,382 L438,363 L431,339 L422,322 L413,310 L401,298 L382,285 L359,275 L336,269 L320,267 L319,266 L312,266 L311,265 L303,265 L302,264 L290,264 L286,262 L286,256 L287,255 L319,251 L347,243 L363,236 L377,227 L388,218 L403,199 L411,182 L416,164 L417,151 L418,150 L418,123 L417,122 L416,109 L411,91 L404,76 L393,60 L372,40 L345,24 L313,12 L282,5 L261,3 L260,2 L236,1 L235,0Z M129,307 L130,306 L223,306 L224,307 L247,308 L266,312 L280,317 L297,328 L304,336 L310,347 L313,361 L313,372 L308,390 L301,400 L286,412 L278,416 L257,422 L242,423 L241,424 L130,424 L129,423Z M129,103 L130,102 L216,102 L217,103 L228,103 L229,104 L236,104 L250,107 L271,116 L283,127 L289,137 L292,147 L293,164 L292,165 L291,175 L287,185 L283,191 L273,201 L262,208 L242,215 L226,217 L225,218 L217,218 L216,219 L130,219 L129,218Z"/></svg>`;
+document.querySelectorAll('.hero__avatar,.ig__ava').forEach(e=>e.innerHTML=LOGO);
+const mq=['if','unless','would','will','were','had known','if I were you','would have'].map(x=>`<span>${x}</span><span class="marquee__star">✦</span>`).join('');
+$('#mq1').innerHTML=mq; $('#mq2').innerHTML=mq;
+$('#typeCards').innerHTML=TYPES.map(t=>`<a class="tcard" href="#${t.id}" style="--c:${t.color}"><span class="num">${t.n}</span><h3>${t.title}</h3><p>${t.short}</p></a>`).join('');
+$('#typeSecs').innerHTML=TYPES.map(t=>`<section class="type-sec" id="${t.id}" style="--c:${t.color}">
+  <div class="type-head"><span class="badge">${t.n}</span><h2>${t.title}</h2><span class="sub">${t.ru}</span></div>
+  <div class="formula"><span class="p">${t.form[0]}</span><span>,</span><span class="p w">${t.form[1]}</span><small>${t.formNote}</small></div>
+  <div class="two"><div class="exl">${t.ex.map(e=>`<div class="row"><span class="en-x">${e[0]}</span><span class="ru-t">${e[1]}</span></div>`).join('')}</div>
+  <div class="note"><h3>${t.note[0]}</h3><p>${t.note[1]}</p></div></div></section>`).join('');
+
+/* ======================= EXERCISE 1: multiple choice ======================= */
+function mountMC(el){
+  let deck,i,score,lock;
+  function start(){deck=shuffle(MC).slice(0,10);i=0;score=0;lock=false;render();}
+  function render(){
+    if(i>=deck.length){const b=store.best('mc',score);endScreen(el,'🎯 Выбери правильный вариант',`${score}/${deck.length}`,cheer(score,deck.length),`Рекорд: ${b}/${deck.length}`,start);return;}
+    const [q,a,d,ex]=deck[i];
+    el.innerHTML=`<h3>🎯 Выбери правильный вариант</h3><p class="gsub">Какая форма подходит на место пропуска?</p>
+      <div class="g-stats"><div>${i+1} / ${deck.length}</div><div>Счёт: ${score}</div></div>
+      <div class="q-card"><div class="q">${q.replace('___','<span style="border-bottom:3px solid #0d0d0d;padding:0 22px"></span>')}</div><span class="q-fb" id="fb">&nbsp;</span></div>
+      <div class="q-opts">${shuffle([a,...d]).map(o=>`<button data-o="${esc(o)}">${o}</button>`).join('')}</div>`;
+    el.querySelectorAll('.q-opts button').forEach(b=>b.onclick=()=>{
+      if(lock)return;lock=true;const ok=b.dataset.o===a;if(ok)score++;
+      el.querySelectorAll('.q-opts button').forEach(x=>{if(x.dataset.o===a)x.classList.add('right');else if(x===b)x.classList.add('wrong');});
+      $('#fb',el).innerHTML=(ok?'✓ Верно! ':`✗ Правильно: <b>${a}</b>. `)+ex;
+      setTimeout(()=>{i++;lock=false;render();},ok?1300:2600);
+    });
+  }
+  start();
+}
+
+/* ======================= EXERCISE 2: typing ======================= */
+function mountTyping(){
+  const box=$('#ex2'), sc=$('#ex2score'); let items,score,done;
+  function upd(){sc.textContent=`${score} / ${items.length}`;}
+  function render(){
+    items=shuffle(TYPE_IN);score=0;done=0;upd();
+    box.innerHTML=items.map((q,k)=>`<div class="tp" data-i="${k}" style="--c:var(--green)"><span class="qn">${k+1}</span>
+      <div class="s">${q[0].replace('___','<span class="gap">?</span>')} <span class="ru-t">(${q[1]})</span></div>
+      <div class="row"><input autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="напиши форму…"><button class="chk">Проверить</button></div><div class="fb"></div></div>`).join('');
+  }
+  function check(card){
+    const q=items[+card.dataset.i], inp=card.querySelector('input');
+    if(inp.disabled||!inp.value.trim())return;
+    const ok=q[2].some(a=>norm(a)===norm(inp.value));
+    inp.disabled=true;card.querySelector('.chk').disabled=true;inp.classList.add(ok?'right':'wrong');
+    if(ok)score++;done++;upd();
+    card.querySelector('.gap').textContent=q[2][0];
+    const fb=card.querySelector('.fb');fb.classList.add('show');
+    fb.innerHTML=(ok?'<b style="color:#2e9a12">✓ Верно!</b> ':`<b style="color:var(--red)">✗ Правильно: ${q[2][0]}</b> `)+`<span class="ru-t">${q[3]}</span>`;
+    if(done===items.length) store.best('typing',score);
+  }
+  box.onclick=e=>{if(e.target.classList.contains('chk'))check(e.target.closest('.tp'));};
+  box.onkeydown=e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT')check(e.target.closest('.tp'));};
+  $('#ex2reset').onclick=()=>{render();box.scrollIntoView({behavior:'smooth',block:'start'});};
+  render();
+}
+
+/* ======================= GAME 1: which type? (rush) ======================= */
+function mountRush(el){
+  const SEC=60;let score,streak,t,lock,last;
+  function intro(){const b=store.get()['rush'];
+    el.innerHTML=`<h3>⚡ Какой тип?</h3><p class="gsub">60 секунд. Читай предложение и быстро выбирай тип: 0, 1, 2 или 3. Серия из 5 верных ответов = двойные очки!</p><div class="g-center">${b?`<div style="color:#d6d0d3">Твой рекорд: <b style="color:#fff">${b}</b></div>`:''}<button class="btn-light" style="margin-top:10px">Старт</button></div>`;
+    el.querySelector('button').onclick=start;}
+  function start(){
+    score=0;streak=0;t=SEC*10;lock=false;last=null;
+    el.innerHTML=`<h3>⚡ Какой тип?</h3><div class="g-stats" style="margin-top:10px"><div>Счёт: <span id="rs">0</span></div><div>Серия: <span id="rk">0</span>🔥</div></div>
+      <div class="timer"><i></i></div><div class="q-card"><div class="q" id="rq" style="font-size:22px"></div><span class="q-fb" id="rf">&nbsp;</span></div>
+      <div class="t-btns">${TLAB.map((l,k)=>`<button data-k="${k}" style="background:${l[2]}">${l[0]}<small>${l[1]}</small></button>`).join('')}</div>`;
+    el.querySelectorAll('.t-btns button').forEach(b=>b.onclick=()=>pick(b));
+    next();
+    const id=setInterval(()=>{t--;const bar=el.querySelector('.timer i');if(!bar){clearInterval(id);return;}bar.style.width=(t/(SEC*10)*100)+'%';if(t<=0){clearInterval(id);end();}},100);
+  }
+  let cur;
+  function next(){do{cur=TYPED[Math.floor(Math.random()*TYPED.length)]}while(cur===last);last=cur;$('#rq',el).textContent=cur[0];$('#rf',el).innerHTML='&nbsp;';el.querySelectorAll('.t-btns button').forEach(b=>b.classList.remove('right','dim'));}
+  function pick(b){
+    if(lock||t<=0)return;lock=true;const ok=+b.dataset.k===cur[1];
+    if(ok){streak++;score+=streak>=5?2:1;}else streak=0;
+    el.querySelectorAll('.t-btns button').forEach(x=>{if(+x.dataset.k===cur[1])x.classList.add('right');else x.classList.add('dim');});
+    $('#rf',el).innerHTML=ok?'✓ Верно!':`✗ Это тип ${cur[1]}`;
+    $('#rs',el).textContent=score;$('#rk',el).textContent=streak;
+    setTimeout(()=>{lock=false;if(t>0)next();},ok?450:1200);
+  }
+  function end(){const b=store.best('rush',score);endScreen(el,'⚡ Какой тип?',score,score>=25?'Невероятно быстро! 🚀':score>=15?'Отлично! Great job!':'Тренируйся ещё! Keep going!','Рекорд: '+b,start);}
+  intro();
+}
+
+/* ======================= GAME 2: match halves ======================= */
+function mountHalves(el){
+  let deck,round,mistakes,sel,done;
+  function start(){deck=shuffle(HALVES);round=0;mistakes=0;render();}
+  function render(){
+    const set=deck.slice(round*5,round*5+5);
+    if(!set.length){const b=store.get()['halves'];if(b==null||mistakes<b)store.set('halves',mistakes);endScreen(el,'🧠 Половинки',mistakes===0?'Без ошибок!':`Ошибок: ${mistakes}`,'Все предложения собраны.','',start);return;}
+    sel=null;done=0;
+    const L=shuffle(set.map((_,k)=>k)),R=shuffle(set.map((_,k)=>k));
+    el.innerHTML=`<h3>🧠 Половинки</h3><p class="gsub">Соедини начало предложения (if-часть) с его концом. Нажми на начало, потом на конец.</p>
+      <div class="g-stats"><div>Раунд ${round+1} / ${Math.ceil(deck.length/5)}</div><div id="hm">Ошибки: ${mistakes}</div></div>
+      <div class="m-cols"><div class="m-col">${L.map(k=>`<button data-s="L" data-k="${k}">${set[k][0]}</button>`).join('')}</div><div class="m-col">${R.map(k=>`<button data-s="R" data-k="${k}">${set[k][1]}</button>`).join('')}</div></div>`;
+    el.querySelectorAll('.m-col button').forEach(b=>b.onclick=()=>{
+      if(b.classList.contains('done'))return;
+      if(!sel||sel.dataset.s===b.dataset.s){if(sel)sel.classList.remove('sel');sel=b;b.classList.add('sel');return;}
+      if(sel.dataset.k===b.dataset.k){[sel,b].forEach(x=>{x.classList.remove('sel');x.classList.add('done')});sel=null;done++;if(done===set.length)setTimeout(()=>{round++;render();},500);}
+      else{mistakes++;const a=sel;[a,b].forEach(x=>{x.classList.remove('sel');x.classList.add('no')});sel=null;setTimeout(()=>[a,b].forEach(x=>x.classList.remove('no')),450);$('#hm',el).textContent='Ошибки: '+mistakes;}
+    });
+  }
+  start();
+}
+
+/* ======================= GAME 3: build ======================= */
+function mountBuild(el){
+  let order,idx,score,placed,pool,tokens,checked,first;
+  function start(){order=shuffle(BUILD.map((_,i)=>i));idx=0;score=0;load();}
+  function load(){
+    if(idx>=order.length){const b=store.best('build',score);endScreen(el,'🧩 Собери предложение',`${score}/${order.length}`,'Собрано с первой попытки.',`Рекорд: ${b}/${order.length}`,start);return;}
+    tokens=BUILD[order[idx]][0].split(' ');pool=shuffle(tokens.map((_,i)=>i));if(pool.every((v,k)=>v===k))pool.reverse();placed=[];checked=false;first=true;render();
+  }
+  function render(){
+    const [en,ru]=BUILD[order[idx]];
+    el.innerHTML=`<h3>🧩 Собери предложение</h3><p class="gsub">Нажимай на слова по порядку. Нажми на слово в строке, чтобы вернуть его обратно.</p>
+      <div class="b-en">«${ru}»</div><div class="b-line" id="bl">${placed.map(i=>`<button class="tok" data-p="${i}">${tokens[i]}</button>`).join('')}</div>
+      <div class="b-pool">${pool.map(i=>`<button class="tok" data-i="${i}">${tokens[i]}</button>`).join('')}</div>
+      <div class="b-foot"><div class="g-stats" style="margin:0"><div>${idx+1} / ${order.length}</div><div>Счёт: ${score}</div></div><button class="btn-light" id="bn" style="display:none">Дальше →</button></div>`;
+    el.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{if(checked)return;const i=+b.dataset.i;pool=pool.filter(x=>x!==i);placed.push(i);render();if(!pool.length)check();});
+    el.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{if(checked)return;const i=+b.dataset.p;placed=placed.filter(x=>x!==i);pool.push(i);render();});
+  }
+  function check(){
+    const ok=placed.map(i=>tokens[i]).join(' ')===tokens.join(' '),bl=$('#bl',el);
+    if(ok){checked=true;bl.classList.add('ok');if(first)score++;const n=$('#bn',el);n.style.display='';n.onclick=()=>{idx++;load();};}
+    else{first=false;bl.classList.add('no');setTimeout(()=>{pool=shuffle(placed);placed=[];render();},700);}
+  }
+  start();
+}
+
+/* ======================= GAME 4: find the mistake ======================= */
+function mountMistake(el){
+  let deck,i,score,lock;
+  function start(){deck=shuffle(MISTAKES);i=0;score=0;lock=false;render();}
+  function render(){
+    if(i>=deck.length){const b=store.best('mistake',score);endScreen(el,'🔍 Найди ошибку',`${score}/${deck.length}`,cheer(score,deck.length),`Рекорд: ${b}/${deck.length}`,start);return;}
+    const [s]=deck[i];
+    el.innerHTML=`<h3>🔍 Найди ошибку</h3><p class="gsub">В каждом предложении одна ошибка. Нажми на неправильное слово.</p>
+      <div class="g-stats"><div>${i+1} / ${deck.length}</div><div>Счёт: ${score}</div></div>
+      <div class="fm-s">${s.split(' ').map((w,k)=>`<button data-k="${k}">${w}</button>`).join('')}</div><div class="fm-fb" id="ff"></div>`;
+    el.querySelectorAll('.fm-s button').forEach(b=>b.onclick=()=>{
+      if(lock)return;lock=true;const [,w,fix,ex]=deck[i];const ok=+b.dataset.k===w;if(ok)score++;
+      el.querySelectorAll('.fm-s button').forEach(x=>{if(+x.dataset.k===w)x.classList.add('wrong');});
+      if(!ok)b.style.outline='3px dashed #fff';
+      $('#ff',el).innerHTML=(ok?'✓ Нашёл(ла)! ':'✗ Ошибка в другом слове. ')+`Правильно: <b>${fix}</b><br>${ex}`;
+      setTimeout(()=>{i++;lock=false;render();},ok?2200:3300);
+    });
+  }
+  start();
+}
+
+mountMC($('#ex1'));
+mountTyping();
+mountRush($('#g1'));
+mountHalves($('#g2'));
+mountBuild($('#g3'));
+mountMistake($('#g4'));
+</script>
+</body>
+</html>
